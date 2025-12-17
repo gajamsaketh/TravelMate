@@ -1,0 +1,55 @@
+{
+  "Mysuru": {
+    "places": [
+      {
+        "name": "Mysore Palace",
+        "slot": "morning",
+        "entry": 100,
+        "age_groups": ["all"]
+      },
+      {
+        "name": "Brindavan Gardens",
+        "slot": "evening",
+        "entry": 50,
+        "age_groups": ["youth", "adults", "seniors"]
+      },
+      {
+        "name": "Mysore Zoo",
+        "slot": "afternoon",
+        "entry": 70,
+        "age_groups": ["kids", "youth"]
+      }
+    ],
+    "restaurants": [
+      { "name": "Mylari Dosa", "tier": "low" },
+      { "name": "Lalitha Mahal Palace Hotel", "tier": "premium" }
+    ]
+  },
+
+  "Goa": {
+    "places": [
+      {
+        "name": "Baga Beach",
+        "slot": "morning",
+        "entry": 0,
+        "age_groups": ["youth", "adults"]
+      },
+      {
+        "name": "Old Goa Churches",
+        "slot": "afternoon",
+        "entry": 0,
+        "age_groups": ["adults", "seniors"]
+      },
+      {
+        "name": "Water Sports",
+        "slot": "morning",
+        "entry": 800,
+        "age_groups": ["youth"]
+      }
+    ],
+    "restaurants": [
+      { "name": "Beach Shack", "tier": "medium" },
+      { "name": "Taj Exotica", "tier": "premium" }
+    ]
+  }
+}

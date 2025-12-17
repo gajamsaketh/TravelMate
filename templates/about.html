@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TravelMate - About</title>
+
+    <!-- Unified Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: "Poppins", sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        /* NAVBAR (same as home.html) */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 64px;
+            padding: 0 70px;
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(6px);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 1000;
+        }
+
+        nav .logo {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #ff8c00;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 28px;
+            align-items: center;
+        }
+
+        nav ul li {
+            height: 64px;
+            display: flex;
+            align-items: center;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #444;
+            font-weight: 500;
+            padding: 10px 6px;
+            transition: 0.18s ease;
+        }
+
+        nav ul li a:hover {
+            color: #ff8c00;
+            transform: translateY(-1px);
+        }
+
+        /* Content styling */
+        .content {
+            padding: 120px 70px 40px;
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(255,255,255,0.9);
+            border-radius: 12px;
+            margin-top: 100px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .content h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #ff8c00;
+            margin-bottom: 24px;
+            text-align: center;
+        }
+
+        .content p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            color: #555;
+        }
+
+        .content ul {
+            margin: 16px 0 20px 20px;
+        }
+
+        .content li {
+            font-size: 1rem;
+            margin-bottom: 8px;
+            color: #666;
+        }
+
+        .content h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #333;
+            margin: 24px 0 12px 0;
+        }
+
+        @media(max-width: 720px){
+            nav { padding: 0 20px; }
+            .content { margin: 80px 20px 20px; padding: 40px 20px; }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- NAVBAR -->
+    <nav>
+        <a href="/" style="text-decoration: none;">
+            <div class="logo">TravelMate</div>
+        </a>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/planner">Plan Trip</a></li>
+            <li><a href="/about">About</a></li>
+        </ul>
+    </nav>
+
+    <!-- CONTENT -->
+    <div class="content">
+        <h1>About This Project</h1>
+        <p>TravelMate is a comprehensive travel planning web application designed to provide users with personalized itineraries, nearby services, and intelligent city suggestions. Our platform leverages modern web technologies and AI integration to create seamless travel experiences.</p>
+        
+        <h3>Key Features:</h3>
+        <ul>
+            <li>AI-powered travel plan generation with detailed day-by-day itineraries</li>
+            <li>Smart city autocomplete with 300+ Indian destinations</li>
+            <li>Nearby restaurants, hotels, and shopping recommendations</li>
+            <li>Interactive maps integration for directions</li>
+            <li>Budget estimation and cost breakdown</li>
+            <li>Responsive design for all devices</li>
+        </ul>
+        
+        <h3>Technologies Used:</h3>
+        <ul>
+            <li><strong>Backend:</strong> Flask, Python, Requests</li>
+            <li><strong>Frontend:</strong> HTML5, CSS3, JavaScript</li>
+            <li><strong>APIs:</strong> Google Gemini AI, Google Maps</li>
+            <li><strong>Styling:</strong> Custom CSS with modern design principles</li>
+            <li><strong>Environment:</strong> Python-dotenv for configuration</li>
+        </ul>
+
+        <p>This project demonstrates the integration of AI capabilities with traditional web development to create intelligent, user-friendly travel planning solutions.</p>
+    </div>
+</body>
+</html>

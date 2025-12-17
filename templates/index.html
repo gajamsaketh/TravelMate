@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>TravelMate - Plan Trip</title>
+
+    <!-- Unified Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* Reset */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html, body { height: 100%; }
+
+        /* Page background */
+        body {
+            font-family: "Poppins", sans-serif;
+            color: #222;
+            background: url("{{ url_for('static', filename='images/bg.jpg') }}") no-repeat center center fixed;
+            background-size: cover;
+        }
+
+        /* NAVBAR - explicit height + consistent across pages */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 64px;                  /* fixed navbar height */
+            padding: 0 70px;               /* horizontal padding */
+            background: rgba(255,255,255,0.98); /* near-opaque to avoid seeing content through */
+            backdrop-filter: blur(6px);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 1100;                 /* high so it sits above page content */
+        }
+
+        nav .logo {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #ff8c00;
+            line-height: 64px;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 28px;
+            align-items: center;
+            margin: 0;
+        }
+
+        nav ul li {
+            height: 64px;
+            display: flex;
+            align-items: center;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #444;
+            font-weight: 500;
+            padding: 10px 6px;
+            transition: color .18s ease, transform .18s ease;
+        }
+
+        nav ul li a:hover,
+        nav ul li a:focus {
+            color: #ff8c00;
+            transform: translateY(-1px);
+            outline: none;
+        }
+
+        /* Reserve space under fixed nav so content doesn't overlap */
+        .page-top-space { padding-top: calc(64px + 26px); } /* nav (64) + breathing room (26) */
+
+        /* FORM BOX / HERO */
+        .form-box {
+            max-width: 900px;
+            margin: 28px auto;
+            background: rgba(255,255,255,0.92);
+            padding: 36px;
+            border-radius: 14px;
+            box-shadow: 0 8px 22px rgba(0,0,0,0.15);
+            position: relative;
+            z-index: 1; /* ensure this sits above the background */
+        }
+
+        .page-title {
+            text-align: center;
+            font-size: 2rem;
+            font-weight: 700;
+            color: #1d3dbf;
+            margin-bottom: 18px;
+        }
+
+        label {
+            font-weight: 600;
+            color: #444;
+            display: block;
+            margin-bottom: 6px;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        select {
+            width: 100%;
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            margin-bottom: 18px;
+            font-size: 1rem;
+        }
+
+        input:focus, select:focus {
+            border-color: #1d3dbf;
+            box-shadow: 0 0 0 3px rgba(29,61,191,0.08);
+            outline: none;
+        }
+
+        .two-cols { display: flex; gap: 20px; }
+        .two-cols > div { flex: 1; }
+
+        button[type="submit"] {
+            width: 100%;
+            padding: 14px;
+            background: #1d3dbf;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.05rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: transform .15s ease, background .15s ease;
+        }
+        button[type="submit"]:hover { background: #0f2e9c; transform: translateY(-2px); }
+
+        /* Plan output styling */
+        .plan-day {
+            background: rgba(255,255,255,0.96);
+            padding: 20px;
+            margin-top: 22px;
+            border-radius: 12px;
+            box-shadow: 0 5px 18px rgba(0,0,0,0.12);
+        }
+        .cost { font-weight: 700; margin-top: 10px; }
+
+        /* Responsive */
+        @media (max-width: 780px) {
+            nav { padding: 0 18px; }
+            .form-box { margin: 16px; padding: 20px; }
+            .page-title { font-size: 1.6rem; }
+            .two-cols { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav>
+        <a href="/" style="text-decoration: none;">
+            <div class="logo">TravelMate</div>
+        </a>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <!-- <li><a href="/planner">Plan Trip</a></li> -->
+            <li><a href="/about">About</a></li>
+        </ul>
+    </nav>
+
+    <!-- MAIN FORM (with reserved top space) -->
+    <main class="page-top-space">
+        <div class="form-box" role="region" aria-labelledby="planner-title">
+            <h1 id="planner-title" class="page-title">AI-Powered Personalized Tour Planner</h1>
+
+            <form method="POST" novalidate>
+                <label for="destination">Destination:</label>
+                <input id="destination" name="destination" type="text" placeholder="e.g., Goa, Delhi, Jaipur" required />
+
+                <div class="two-cols" aria-hidden="false">
+                    <div>
+                        <label for="duration">Duration (Days):</label>
+                        <input id="duration" name="duration" type="number" placeholder="e.g., 3" min="1" required />
+                    </div>
+                    <div>
+                        <label for="people">Number of People:</label>
+                        <input id="people" name="people" type="number" value="2" min="1" required />
+                    </div>
+                </div>
+
+                <div class="two-cols">
+                    <div>
+                        <label for="age_group">Age Group:</label>
+                        <select id="age_group" name="age_group" required>
+                            <option value="youth">18-30</option>
+                            <option value="adults">30-50</option>
+                            <option value="seniors">50+</option>
+                            <option value="all">All</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label for="budget">Budget Style:</label>
+                        <select id="budget" name="budget">
+                            <option value="low">Low</option>
+                            <option value="medium">Mid-Range (₹₹)</option>
+                            <option value="premium">Premium (₹₹₹)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <label for="interests">Interests:</label>
+                <input id="interests" name="interests" type="text" placeholder="e.g., beaches, food, history" />
+
+                <button type="submit">Generate AI Plan</button>
+            </form>
+        </div>
+
+        {% if plan_data %}
+            <div class="form-box" style="margin-top: 30px;">
+                <h2 class="page-title">Your Personalized Itinerary</h2>
+
+                {% for day in plan_data.plan %}
+                    <div class="plan-day" role="article">
+                        <h3>Day {{ day.day }}</h3>
+                        <p><strong>Activities:</strong> {{ day.activities }}</p>
+                        <p>{{ day.description }}</p>
+                        <p class="cost">Estimated Cost: {{ day.estimated_cost }}</p>
+                    </div>
+                {% endfor %}
+
+                <div class="plan-day" style="background:#ffe7c4;">
+                    <h3>Total Trip Cost</h3>
+                    <p class="cost">{{ plan_data.grand_total }}</p>
+                </div>
+            </div>
+        {% endif %}
+    </main>
+
+</body>
+</html>

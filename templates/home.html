@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TravelMate - Home</title>
+
+    <!-- Unified Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+      
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+              font-family: "Poppins", sans-serif;
+              background: url("{{ url_for('static', filename='images/home-bg.jpg') }}") 
+                no-repeat center center fixed;
+              background-size: cover;
+              background-attachment: fixed;
+              background-position: center;
+              color: white;
+          }
+
+        /* NAVBAR (same for both pages) */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 64px;
+            padding: 0 70px;
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(6px);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 1000;
+        }
+
+        nav .logo {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #ff8c00;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 28px;
+            align-items: center;
+        }
+
+        nav ul li {
+            height: 64px;
+            display: flex;
+            align-items: center;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #444;
+            font-weight: 500;
+            padding: 10px 6px;
+            transition: 0.18s ease;
+        }
+
+        nav ul li a:hover {
+            color: #ff8c00;
+            transform: translateY(-1px);
+        }
+
+        /* Adds spacing below navbar */
+        .page-top-space { padding-top: calc(64px + 24px); }
+
+        /* HERO SECTION */
+        .hero {
+            min-height: 100vh;
+            padding: 0 70px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #222;
+        }
+
+        .hero p {
+            max-width: 540px;
+            margin-top: 16px;
+            font-size: 1.2rem;
+            color: #444;
+        }
+
+        .btn {
+            display: inline-block;
+            margin-top: 28px;
+            padding: 12px 28px;
+            background: #ff8c00;
+            color: #fff;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 600;
+            transition: .25s ease;
+        }
+
+        .btn:hover {
+            background: #ff7000;
+            transform: translateY(-2px);
+        }
+
+        @media(max-width: 720px){
+            nav { padding: 0 20px; }
+            .hero { padding: 0 20px; }
+        }
+        /* FEATURE BOXES SECTION (smaller version) */
+.feature-container {
+    margin-top: 32px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.feature-box {
+    width: 240px;
+    height: 140px;
+    background: rgba(255,255,255,0.85);
+    backdrop-filter: blur(4px);
+    border-radius: 12px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.22);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform .25s ease, box-shadow .25s ease;
+    cursor: pointer;
+}
+
+.feature-box h2 {
+    color: #1d3dbf;
+    font-size: 1.15rem;
+    text-align: center;
+    font-weight: 600;
+}
+
+.feature-box:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 26px rgba(0,0,0,0.30);
+}
+
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav>
+        <a href="/" style="text-decoration: none;">
+            <div class="logo">TravelMate</div>
+        </a>
+        <ul>
+            <!-- <li><a href="{{ url_for('home') }}">Home</a></li> -->
+            <li><a href="/planner">Plan Trip</a></li>
+            <li><a href="/about">About</a></li>
+        </ul>
+    </nav>
+
+    <!-- HERO -->
+    <div class="hero page-top-space">
+
+    <!-- MAIN HEADINGS -->
+    <h1>Plan Smarter.<br>Travel Further.</h1>
+    <p>Your AI-powered travel companion for perfect itineraries, every time.</p>
+
+    <!-- BUTTON -->
+    <a class="btn" href="{{ url_for('planner') }}">Start Planning</a>
+
+    <!-- FEATURE BOXES SECTION -->
+    <!-- <div class="feature-container">
+        <div class="feature-box">
+            <a href="/restaurants">
+                <h2>Nearby Restaurants</h2>
+            </a>
+        </div>
+
+        <div class="feature-box">
+            <a href="/hotels">
+                <h2>Nearby Hotels</h2>
+            </a>
+        </div>
+
+        <div class="feature-box">
+            <a href="/shopping">
+                <h2>Nearby Shopping</h2>
+            </a>
+        </div>
+    </div> -->
+
+</div>
+
+
+</body>
+</html>
